@@ -92,11 +92,11 @@ Siga os passos abaixo para rodar o projeto localmente:
 
 ## 📱 Prints da Aplicação
 
-\<div align="center"\>
-\<img src="LINK\_DA\_SUA\_IMAGEM\_AQUI\_1.png" width="250" alt="Tela Principal"\>
-\<img src="LINK\_DA\_SUA\_IMAGEM\_AQUI\_2.png" width="250" alt="Busca de Jogo"\>
-\<img src="LINK\_DA\_SUA\_IMAGEM\_AQUI\_3.png" width="250" alt="Notificação"\>
-\</div\>
+<div align="center">
+  <img src="assets/buyorwait1.png" width="250" alt="Tela Principal">
+  <img src="assets/buyorwait2.png" width="250" alt="Busca de Jogo">
+  <img src="assets/buyorwait3.png" width="250" alt="Tela com Jogos">
+</div>
 
 ## 📦 Download do APK
 
