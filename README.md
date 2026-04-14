@@ -26,30 +26,33 @@ Um aplicativo móvel desenvolvido em **Flutter** que ajuda os usuários a rastre
 Abaixo está o desenho da arquitetura do sistema, detalhando o fluxo de dados entre o aplicativo, o Firebase e as APIs externas.
 
 ```mermaid
-graph TD
-    %% Aplicativo
-    UI[Flutter App UI]
-    Background[Background Worker]
-    
-    %% Firebase
-    Auth[Firebase Auth]
-    DB[(Cloud Firestore)]
-    
-    %% APIs Externas & OS
-    Steam[Steam API]
-    GGDeals[GG.deals API]
-    OS[Android OS]
+graph LR
+    subgraph App ["Aplicativo (Flutter)"]
+        UI["Interface do Usuário (UI)"]
+        Worker["Background Worker"]
+    end
 
-    %% Rotas Principais da UI (Linhas Sólidas)
-    UI -->|Autentica| Auth
-    UI -->|Busca Títulos| Steam
-    UI -->|Consulta Preço| GGDeals
-    UI -->|Salva Wishlist| DB
-    
-    %% Rotas do Background Worker (Linhas Pontilhadas e mais longas para evitar overlap)
-    Background -.->|1. Lê Wishlist diária| DB
-    Background -.->|2. Checa novas mínimas| GGDeals
-    Background -.->|3. Dispara alerta nativo| OS
+    subgraph Nuvem ["Firebase"]
+        Auth["Autenticação Anônima"]
+        DB[("Cloud Firestore")]
+    end
+
+    subgraph APIs ["Serviços Externos"]
+        Steam["Steam Public API"]
+        GGDeals["GG.deals API"]
+        OS["Sistema Operacional\n(Notificações)"]
+    end
+
+    %% Conexões da UI (Linhas sólidas)
+    UI -->|"1. Autentica"| Auth
+    UI -->|"2. Gerencia Wishlist"| DB
+    UI -->|"3. Busca Jogos"| Steam
+    UI -->|"4. Consulta Preços"| GGDeals
+
+    %% Conexões do Worker (Linhas pontilhadas)
+    Worker -.->|"A. Lê dados a cada 24h"| DB
+    Worker -.->|"B. Compara Mínimas"| GGDeals
+    Worker -.->|"C. Dispara Alerta"| OS
 ```
 	
 ## ⚙️ Como Instalar e Executar
