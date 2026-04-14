@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "3427046192",
+    "project_id": "buyorwait-b1ec8",
+    "storage_bucket": "buyorwait-b1ec8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3427046192:android:132dcb0f7f289fa6232ef5",
+        "android_client_info": {
+          "package_name": "com.example.buy_or_wait"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXjuWgfbW_YLaPLPLfbIWOPLjp9MdpIbA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
