@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart'; // [NEW] Import dotenv
 
 // -----------------------------------------------------------------------------
 // [BACKGROUND WORKER]
@@ -18,6 +19,8 @@ void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     try {
       await Firebase.initializeApp();
+      // [NEW] Load the secret keys in the background worker
+      await dotenv.load(fileName: ".env");
 
       final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
           FlutterLocalNotificationsPlugin();
@@ -41,7 +44,8 @@ void callbackDispatcher() {
 
       if (wishlistSnapshot.docs.isEmpty) return Future.value(true);
 
-      const apiKey = 'WczQJnECVdUuEmWofaos0nglsMuia1-k';
+      // [NEW] Securely grab the key from the vault
+      final apiKey = dotenv.env['GG_DEALS_API_KEY'] ?? '';
       int notificationId = 0;
 
       for (var doc in wishlistSnapshot.docs) {
@@ -107,6 +111,9 @@ void callbackDispatcher() {
 // -----------------------------------------------------------------------------
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // [NEW] Load the secret keys when the app launches
+  await dotenv.load(fileName: ".env");
 
   if (kIsWeb) {
     await Firebase.initializeApp(
@@ -239,7 +246,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = false;
-  final String _ggDealsApiKey = 'WczQJnECVdUuEmWofaos0nglsMuia1-k';
+
+  // [NEW] Securely grab the key from the vault for the main app UI
+  final String _ggDealsApiKey = dotenv.env['GG_DEALS_API_KEY'] ?? '';
 
   String _currentManualInput = '';
   TextEditingController? _autoCompleteController;
@@ -293,7 +302,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return [];
   }
 
-  // [NEW] Function to safely open URLs
   Future<void> _launchGameUrl(String urlString) async {
     if (urlString.isEmpty) return;
     final Uri url = Uri.parse(urlString);
