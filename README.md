@@ -27,31 +27,29 @@ Abaixo está o desenho da arquitetura do sistema, detalhando o fluxo de dados en
 
 ```mermaid
 graph TD
-    %% Componentes Principais
+    %% Aplicativo
     UI[Flutter App UI]
-    Background[Background Worker\nWorkmanager]
+    Background[Background Worker]
     
     %% Firebase
-    Auth[Firebase Auth\nAnonymous]
+    Auth[Firebase Auth]
     DB[(Cloud Firestore)]
     
-    %% APIs
-    Steam[Steam Public APIs\nSearch & Images]
-    GGDeals[GG.deals API\nPrices & History]
-    
-    %% OS
-    OS[Android OS\nLocal Notifications]
+    %% APIs Externas & OS
+    Steam[Steam API]
+    GGDeals[GG.deals API]
+    OS[Android OS]
 
-    %% Relações da UI
-    UI -->|Autenticação| Auth
-    UI <-->|Leitura/Escrita da Wishlist| DB
-    UI -->|Busca pelo Título| Steam
-    UI -->|Busca de Preços| GGDeals
+    %% Rotas Principais da UI (Linhas Sólidas)
+    UI -->|Autentica| Auth
+    UI -->|Busca Títulos| Steam
+    UI -->|Consulta Preço| GGDeals
+    UI -->|Salva Wishlist| DB
     
-    %% Relações do Background
-    Background <-->|Checagem Diária| DB
-    Background -->|Verifica Novos Preços| GGDeals
-    Background -->|Dispara Alerta| OS
+    %% Rotas do Background Worker (Linhas Pontilhadas e mais longas para evitar overlap)
+    Background -.->|1. Lê Wishlist diária| DB
+    Background -.->|2. Checa novas mínimas| GGDeals
+    Background -.->|3. Dispara alerta nativo| OS
 ```
 	
 ## ⚙️ Como Instalar e Executar
