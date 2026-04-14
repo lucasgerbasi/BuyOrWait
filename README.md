@@ -99,8 +99,16 @@ Siga os passos abaixo para rodar o projeto localmente:
   <img src="assets/buyorwait3.PNG" width="250" alt="Tela com Jogos">
 </div>
 
+> **⚠️ Segurança**
+> Seguindo as boas práticas de segurança, o arquivo com a chave da API do GG.deals (`keys.env`) foi incluído no `.gitignore` e não está no repositório público. 
+> 
+> **Para testar o aplicativo:**
+> 1. **Opção Mais Fácil:** Baixe e instale o `.apk` fornecido na aba *Releases*. O APK já contém as chaves compiladas e está 100% funcional.
+> 2. **Para rodar o código-fonte:** Você precisará criar um arquivo chamado `keys.env` dentro da pasta `assets/` contendo a sua própria chave da API:
+> `GG_DEALS_API_KEY=sua_chave_aqui`
+
 ## 📦 Download do APK
 
 Você pode baixar a versão final compilada do aplicativo (.apk) para testar diretamente em um dispositivo Android:
 
-📥 **[Baixar Buy or Wait APK (v1.0.0)](link)**
+📥 **[Baixar Buy or Wait APK (v1.0.0)](https://github.com/lucasgerbasi/BuyOrWait/releases/tag/1.0)**
