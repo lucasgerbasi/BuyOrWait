@@ -51,7 +51,8 @@ graph TD
     %% Relações do Background
     Background <-->|Checagem Diária| DB
     Background -->|Verifica Novos Preços| GGDeals
-    Background -->|Dispara Alerta| OS```
+    Background -->|Dispara Alerta| OS
+```
 	
 ## ⚙️ Como Instalar e Executar
 
