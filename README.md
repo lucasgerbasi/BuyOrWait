@@ -94,9 +94,7 @@ Siga os passos abaixo para rodar o projeto localmente:
 ## 📱 Prints da Aplicação
 
  <div align="center">
-  <img src="assets/buyorwait1.PNG" width="250" alt="Tela Principal">
-  <img src="assets/buyorwait2.PNG" width="250" alt="Busca de Jogo">
-  <img src="assets/buyorwait3.PNG" width="250" alt="Tela com Jogos">
+  <img src="assets/buyorwait_landscape.png" alt="Tela Principal">
 </div> 
 
 ## ⚠️ Segurança
